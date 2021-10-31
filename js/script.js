@@ -1,15 +1,15 @@
 
 //-------------- меню бургер и выпадающие меню ------------ 
 
-let menuBody = document.querySelector('.menu');
-let iconMenu = document.querySelector('.menu__icon');
-let overLay = document.querySelector('.overlay');
+var menuBody = document.querySelector('.menu');
+   iconMenu = document.querySelector('.menu__icon');
+   overLay = document.querySelector('.overlay');
 
-let lockScroll = () => {
+   lockScroll = () => {
    document.body.classList.add('lock');
 }
 
-let unlockScroll = () => {
+   unlockScroll = () => {
    document.body.classList.remove('lock');
 }
 
@@ -29,23 +29,27 @@ overLay.addEventListener('click', () =>{
    unlockScroll();
 });
 
-var menuItem = document.querySelectorAll('.menu__item-drop');
+let menuItem = document.querySelectorAll('.menu__item-drop');
+if(menuItem.length > 0) {
    for ( let i = 0; i < menuItem.length; i++) {
       menuItem[i].addEventListener('click', (e)=> {
          if(e.target.classList.contains('menu__item-drop')) {
-          e.target.closest('.menu__item').querySelector('.menu__sub-list').classList.toggle('active');
+            e.target.closest('.menu__item').querySelector('.menu__sub-list').classList.toggle('active');
          }
-      });
+       });
    }
+}
+
+
 
 
    //-------------- POPUP ------------ 
 
 
-   const openPopup = document.querySelector('.open-popup');
-   const closePopup = document.querySelector('.close-popup');
-   const popup = document.querySelector('.popup');
-   const popupBody = document.querySelector('.popup__body');
+   var openPopup = document.querySelector('.open-popup');
+   var closePopup = document.querySelector('.close-popup');
+   var popup = document.querySelector('.popup');
+   var popupBody = document.querySelector('.popup__body');
 
    openPopup.addEventListener('click', function(e){
       e.preventDefault();
