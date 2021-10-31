@@ -1,48 +1,51 @@
-//-------------- выпадающие меню ------------ 
 
-let menuArrows = document.querySelectorAll('.menu__arrow');
-if(menuArrows.length>0) {
-   for (let index = 0; index < menuArrows.length; index++) {
-      const menuArrow = menuArrows[index];
-         menuArrow.addEventListener('click', function(e){
-         menuArrow.parentElement.classList.toggle('active');
-         menuArrow.classList.toggle('active');
-         
-      });
-   }
-   }
+//-------------- меню бургер и выпадающие меню ------------ 
 
+let menuBody = document.querySelector('.menu');
+let iconMenu = document.querySelector('.menu__icon');
+let overLay = document.querySelector('.overlay');
 
-
-
-
-
-//-------------- menu burger ------------ 
-
-
-const iconMenu = document.querySelector('.menu__icon');
-if (iconMenu) {
-   const menuBody = document.querySelector('.menu');
-   iconMenu.addEventListener('click',function(e) {
-      document.body.classList.toggle('lock');
-      iconMenu.classList.toggle('active');
-      menuBody.classList.toggle('active');
-   })
+let lockScroll = () => {
+   document.body.classList.add('lock');
 }
 
+let unlockScroll = () => {
+   document.body.classList.remove('lock');
+}
 
+//------------------------------------------------------------
 
+iconMenu.addEventListener('click', () =>{
+   iconMenu.classList.add('active');
+   menuBody.classList.add('active');
+   overLay.classList.add('active');
+   lockScroll();
+});
 
+overLay.addEventListener('click', () =>{
+   menuBody.classList.remove('active');
+   overLay.classList.remove('active');
+   iconMenu.classList.remove('active');
+   unlockScroll();
+});
 
+var menuItem = document.querySelectorAll('.menu__item-drop');
+   for ( let i = 0; i < menuItem.length; i++) {
+      menuItem[i].addEventListener('click', (e)=> {
+         if(e.target.classList.contains('menu__item-drop')) {
+          e.target.closest('.menu__item').querySelector('.menu__sub-list').classList.toggle('active');
+         }
+      });
+   }
 
 
    //-------------- POPUP ------------ 
 
 
-   var openPopup = document.querySelector('.open-popup');
-   var closePopup = document.querySelector('.close-popup');
-   var popup = document.querySelector('.popup');
-   var popupBody = document.querySelector('.popup__body');
+   const openPopup = document.querySelector('.open-popup');
+   const closePopup = document.querySelector('.close-popup');
+   const popup = document.querySelector('.popup');
+   const popupBody = document.querySelector('.popup__body');
 
    openPopup.addEventListener('click', function(e){
       e.preventDefault();
@@ -54,6 +57,12 @@ if (iconMenu) {
       popup.classList.remove('active');
       
    });
+
+   popupBody.addEventListener('click', () =>{
+      popup.classList.remove('active');
+   });
+
+   
 
    //-------------- СЧЕТЧИК ------------ 
 
