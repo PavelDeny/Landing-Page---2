@@ -1,9 +1,12 @@
 
+
+
+
 //-------------- меню бургер и выпадающие меню ------------ 
 
-var menuBody = document.querySelector('.menu');
-   iconMenu = document.querySelector('.menu__icon');
-   overLay = document.querySelector('.overlay');
+//let  menuBody = document.querySelector('.menu');
+//let  iconMenu = document.querySelector('.menu__icon');
+//let  overLay = document.querySelector('.overlay');
 
    lockScroll = () => {
    document.body.classList.add('lock');
@@ -15,41 +18,109 @@ var menuBody = document.querySelector('.menu');
 
 //------------------------------------------------------------
 
-iconMenu.addEventListener('click', () =>{
+
+
+function menuOpen() {
+   let  menuBody = document.querySelector('.menu');
+   let  iconMenu = document.querySelector('.menu__icon');
+   let  overLay = document.querySelector('.overlay');
+
+   lockScroll = () => {
+      document.body.classList.add('lock');
+   }
+   
+
+   iconMenu.addEventListener('click', function (e) {
    iconMenu.classList.add('active');
    menuBody.classList.add('active');
    overLay.classList.add('active');
    lockScroll();
-});
+   
+})
 
-overLay.addEventListener('click', () =>{
+};
+
+menuOpen();
+
+
+
+
+function closeOpen() {
+let  menuBody = document.querySelector('.menu');
+   let  iconMenu = document.querySelector('.menu__icon');
+   let  overLay = document.querySelector('.overlay');
+
+   unlockScroll = () => {
+      document.body.classList.remove('lock');
+   }
+   
+
+   overLay.addEventListener('click', function (e) {
+   iconMenu.classList.remove('active');
    menuBody.classList.remove('active');
    overLay.classList.remove('active');
-   iconMenu.classList.remove('active');
    unlockScroll();
-});
+   
+})
+};
 
-let menuItem = document.querySelectorAll('.menu__item-drop');
-if(menuItem.length > 0) {
-   for ( let i = 0; i < menuItem.length; i++) {
-      menuItem[i].addEventListener('click', (e)=> {
-         if(e.target.classList.contains('menu__item-drop')) {
-            e.target.closest('.menu__item').querySelector('.menu__sub-list').classList.toggle('active');
-         }
-       });
+closeOpen();
+
+   
+
+
+function subList(){
+   let menuItem = document.querySelectorAll('.menu__item-drop');
+   if(menuItem.length > 0) {
+      for ( let index = 0; index < menuItem.length; index++) {
+         menuItem[index].addEventListener('click', function(e) {
+            if(e.target.classList.contains('menu__item')) {
+               e.target.closest('.menu__item').querySelector('.menu__sub-list').classList.toggle('active');
+            }
+         });
+      }
    }
-}
+};
+
+subList();
+   
+
+
+//iconMenu.addEventListener('click', () =>{
+//   iconMenu.classList.add('active');
+//   menuBody.classList.add('active');
+//   overLay.classList.add('active');
+//   lockScroll();
+//});
+
+//overLay.addEventListener('click', () =>{
+//   menuBody.classList.remove('active');
+//   overLay.classList.remove('active');
+//   iconMenu.classList.remove('active');
+//   unlockScroll();
+//});
+
+//let menuItem = document.querySelectorAll('.menu__item-drop');
+//if(menuItem.length > 0) {
+//   for ( let i = 0; i < menuItem.length; i++) {
+//      menuItem[i].addEventListener('click', (e)=> {
+//         if(e.target.classList.contains('menu__item-drop')) {
+//            e.target.closest('.menu__item').querySelector('.menu__sub-list').classList.toggle('active');
+//         }
+//       });
+//   }
+//}
 
 
 
 
    //-------------- POPUP ------------ 
+   function popup() {
 
-
-   var openPopup = document.querySelector('.open-popup');
-   var closePopup = document.querySelector('.close-popup');
-   var popup = document.querySelector('.popup');
-   var popupBody = document.querySelector('.popup__body');
+      let openPopup = document.querySelector('.open-popup');
+   let closePopup = document.querySelector('.close-popup');
+   let popup = document.querySelector('.popup');
+   let popupBody = document.querySelector('.popup__body');
 
    openPopup.addEventListener('click', function(e){
       e.preventDefault();
@@ -65,21 +136,24 @@ if(menuItem.length > 0) {
    popupBody.addEventListener('click', () =>{
       popup.classList.remove('active');
    });
-
-   
+      
+   }
+   popup();
 
    //-------------- СЧЕТЧИК ------------ 
 
-   var time = 2, cc = 1;
+   function count() {
+
+      let time = 2, cc = 1;
    $(window).scroll(function(){
-      $('#counter').each(function(){
-         var
+      $('.form-appointment__number').each(function(){
+         let
          cPos = $(this).offset().top,
          topWindow = $(window).scrollTop();
-         if (cPos < topWindow + 700) {
+         if (cPos < topWindow + 950) {
             if (cc < 2) {
          $('div').each(function(){
-            var
+            let
             i=1,
             num = $(this).data('num'),
             step = 1000 * time/num,
@@ -100,6 +174,40 @@ if(menuItem.length > 0) {
       }
     });
    });
+
+   }
+   count();
+
+   //let time = 2, cc = 1;
+   //$(window).scroll(function(){
+   //   $('#counter').each(function(){
+   //      let
+   //      cPos = $(this).offset().top,
+   //      topWindow = $(window).scrollTop();
+   //      if (cPos < topWindow + 700) {
+   //         if (cc < 2) {
+   //      $('div').each(function(){
+   //         let
+   //         i=1,
+   //         num = $(this).data('num'),
+   //         step = 1000 * time/num,
+   //         that = $(this),
+   //         int = setInterval(function() {
+   //            if (i <= num ) {
+   //               that.html(i);
+   //            }
+   //            else {
+   //               cc = cc + 2;
+   //               clearInterval(int);
+   //            }
+   //            i++;
+            
+   //         }, step);
+   //      });
+   //   }
+   //   }
+   // });
+   //});
 
 
    
